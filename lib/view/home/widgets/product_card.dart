@@ -1,8 +1,9 @@
-import 'package:day4/data/data_static.dart';
+import 'package:day4/model/product_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final ProductModel model;
+  const ProductCard({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,20 @@ class ProductCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Padding(
+              Container(
+                height: 200,
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(imageURL)),
+                    child: Image.network(
+                      model.image,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )),
               ),
               const Positioned(
-                top: 0,
-                bottom: 0,
-                right: 0,
-                left: 0,
+                top: 10,
+                right: 10,
                 child: Center(
                   child: Icon(
                     Icons.favorite,
@@ -35,22 +39,22 @@ class ProductCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(10),
             width: double.infinity,
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Nikey air force one',
+                  model.name,
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
-                Text(
-                  'describtion',
-                  style: TextStyle(color: Colors.grey),
-                ),
+                // Text(
+                //   model.,
+                //   style: TextStyle(color: Colors.grey),
+                // ),
                 Row(
                   children: [
                     Spacer(),
                     Text(
-                      '100.000.000 kip',
+                      model.price.toString(),
                       style: TextStyle(color: Colors.green),
                     ),
                   ],

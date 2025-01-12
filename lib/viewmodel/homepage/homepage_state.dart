@@ -1,3 +1,4 @@
+import 'package:day4/model/product_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class HomepageState extends Equatable {}
@@ -13,7 +14,7 @@ class HomepageLoading extends HomepageState {
 }
 
 class HomepageSuccess extends HomepageState {
-  final List? data;
+  final List<ProductModel>? data;
   final Map? dataFromID;
   HomepageSuccess({this.data, this.dataFromID});
   @override

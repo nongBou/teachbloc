@@ -1,3 +1,4 @@
+import 'package:day4/services/product_service.dart';
 import 'package:day4/view/home/widgets/banner.dart';
 import 'package:day4/view/home/widgets/category.dart';
 import 'package:day4/view/home/widgets/product_card.dart';
@@ -26,7 +27,8 @@ class MyHomePage extends StatelessWidget {
         ],
       ),
       body: BlocProvider(
-        create: (context) => HomepageBloc()..add(HomePageGetOnly(id: 1)),
+        create: (context) =>
+            HomepageBloc(service: ProductService())..add(HomePageGetAllData()),
         child:
             BlocBuilder<HomepageBloc, HomepageState>(builder: (context, state) {
           if (state is HomepageLoading) {
@@ -42,9 +44,9 @@ class MyHomePage extends StatelessWidget {
                   ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 10,
+                      itemCount: state.data!.length,
                       itemBuilder: (context, index) {
-                        return const ProductCard();
+                        return ProductCard(model: state.data![index]);
                       }),
                 ],
               ),

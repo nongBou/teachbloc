@@ -1,8 +1,5 @@
 import 'package:day4/view/auth/login.dart';
-import 'package:day4/viewmodel/homepage/homepage_bloc.dart';
-import 'package:day4/viewmodel/homepage/homepage_event.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
